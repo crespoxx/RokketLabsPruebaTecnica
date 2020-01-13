@@ -40,7 +40,7 @@ Using package manager NPM, install the follow package by [native-base](https://n
 ```bash
 npm i native-base
 ```
-It use is for importing icons to the app
+It is use for importing icons to the app
 
  ```javascript
 import { Icon } from 'native-base';
@@ -51,7 +51,7 @@ Then, install following package [react-native-spinkit](https://github.com/maxs15
 ```bash
 npm install react-native-spinkit@latest --save
 ```
-It use is for loading animation.
+It is use for loading animation.
  ```javascript
 import Spinner from 'react-native-spinkit';
 ```
