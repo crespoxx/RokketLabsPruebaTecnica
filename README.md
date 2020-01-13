@@ -30,6 +30,8 @@ Para buscar estos posts, simplemente debes ingresar el tag que desees en el busc
 
 Asi mismo, se podrá buscar más posts de una manera más rápida presionando los tags que se encuentra de cada post en color azul con un "#"
 
+----
+
 # RokketLabsPruebaTecnica (English)
 RokketLabsPruebaTecnica is an app developed in React Native (not Expo) which objective is to show a list of posts by their tags.
 
