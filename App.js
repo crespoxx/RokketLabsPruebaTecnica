@@ -3,6 +3,7 @@ import { StyleSheet, View, ScrollView, FlatList,Dimensions, Image, Text, Touchab
 import { Icon } from 'native-base';
 import Spinner from 'react-native-spinkit';
 
+//Get windows dimensions
 let widthPantalla = Dimensions.get("window").width;
 let heigtPantalla = Dimensions.get("window").height;
 
@@ -23,6 +24,8 @@ export default class App extends React.Component {
 
         this.defaultPosts();
 
+
+        //Listeners for keyboard
         this.keyboardDidShowListener = Keyboard.addListener(
           'keyboardDidShow',
           this._keyboardDidShow,
@@ -37,10 +40,12 @@ export default class App extends React.Component {
       }
 
       componentWillUnmount() {
+        //Remove keyboard´s listeners
         this.keyboardDidShowListener.remove();
         this.keyboardDidHideListener.remove();
       }
 
+      //Function that search all posts from API
       defaultPosts = async () => {
 
         this.setState({loading:true, postOpacity: new Animated.Value(0)});
@@ -63,6 +68,7 @@ export default class App extends React.Component {
         }
       }
 
+      //Function that finds posts by tag
       findPosts = async() => {
 
         this.setState({loading:true, postOpacity: new Animated.Value(0)});
@@ -85,10 +91,12 @@ export default class App extends React.Component {
         }
       }
 
+      //Function that runs when keyboard is opened
       _keyboardDidShow = () => {
         this.setState({keyboardOpen: true})
       }
 
+      //Function that runs when keyboard is closed
       _keyboardDidHide = () => {
         this.setState({keyboardOpen: false})
       }
@@ -97,57 +105,57 @@ export default class App extends React.Component {
 
           return (
             <View style={styles.container}>
-            <View style={styles.textInputContainer}>
-            {
-              this.state.keyboardOpen ? (
-                  <TouchableOpacity onPress={Keyboard.dismiss} style={styles.deleteIcon}>
-                  <Icon
-                  name="arrowleft"
-                  underlineColorAndroid="transparent"
-                  type="AntDesign"
-                  />
-                  </TouchableOpacity>
-                ):(
-                  <TouchableOpacity onPress={() => { this.searchInput.focus() }} style={styles.deleteIcon}>
-                  <Icon
-                  name="magnifier"
-                  underlineColorAndroid="transparent"
-                  type="SimpleLineIcons"
-                  />
-                  </TouchableOpacity>
-                  )
-            }
-
-              <View style={{flexDirection:'row', justifyContent:'space-between'}}>
-              <TextInput
-                  placeholder="Buscar"
-                  placeholderTextColor="#BDBDBD"
-                  value={this.state.tag}
-                  onChangeText={(tag) => this.setState({tag})}
-                  selectionColor={'grey'}
-                  onSubmitEditing={ () => this.findPosts() }
-                  style={styles.textInput}
-                  ref={(input) => { this.searchInput = input; }}
-                />
+                <View style={styles.textInputContainer}>
                 {
-                  this.state.tag.length != 0 ? (
-                    <TouchableOpacity onPress={() => {this.setState({tag:''}, () => {this.defaultPosts()})}} style={styles.deleteIcon}>
-                    <Icon
-                    name="x"
-                    underlineColorAndroid="transparent"
-                    type="Feather"
-
-                    />
-                    </TouchableOpacity>
-                    ):null
+                  this.state.keyboardOpen ? (
+                      <TouchableOpacity onPress={Keyboard.dismiss} style={styles.icons}>
+                        <Icon
+                        name="arrowleft"
+                        underlineColorAndroid="transparent"
+                        type="AntDesign"
+                        />
+                      </TouchableOpacity>
+                    ):(
+                      <TouchableOpacity onPress={() => { this.searchInput.focus() }} style={styles.icons}>
+                        <Icon
+                        name="magnifier"
+                        underlineColorAndroid="transparent"
+                        type="SimpleLineIcons"
+                        />
+                      </TouchableOpacity>
+                      )
                 }
-              </View>
-            </View>
+
+                  <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+                    <TextInput
+                        placeholder="Search"
+                        placeholderTextColor="#BDBDBD"
+                        value={this.state.tag}
+                        onChangeText={(tag) => this.setState({tag})}
+                        selectionColor={'grey'}
+                        onSubmitEditing={ () => this.findPosts() }
+                        style={styles.textInput}
+                        ref={(input) => { this.searchInput = input; }}
+                      />
+                      {
+                        this.state.tag.length != 0 ? (
+                          <TouchableOpacity onPress={() => {this.setState({tag:''}, () => {this.defaultPosts()})}} style={styles.icons}>
+                          <Icon
+                          name="x"
+                          underlineColorAndroid="transparent"
+                          type="Feather"
+
+                          />
+                          </TouchableOpacity>
+                          ):null
+                      }
+                  </View>
+                </View>
 
             {
               this.state.loading ? (
                 <View style={styles.activityIndicator}>
-                <Spinner color={'black'} size={50} type={'9CubeGrid'} />
+                  <Spinner color={'black'} size={50} type={'9CubeGrid'} />
                 </View>
                 ):(
                   <FlatList
@@ -155,20 +163,20 @@ export default class App extends React.Component {
                       data={this.state.tags}
                       style={{}}
                       renderItem= {({item, index}) =>
-                      <Animated.View style={{borderWidth:0.5, opacity: this.state.postOpacity, borderColor:'grey', marginTop:10, backgroundColor:'white', elevation: 3}}>
+                      <Animated.View style={[styles.postView, {opacity: this.state.postOpacity}]}>
 
-                        <Animated.View style={{flexDirection:'row', marginLeft:20, marginTop:10,  alignItems: 'center', opacity: this.state.postOpacity}}>
-                            <Image source={{uri: item.owner.image}} style={{width:60,height:60, borderRadius:30}}/>
+                        <View style={styles.topPost}>
+                            <Image source={{uri: item.owner.image}} style={styles.profileImage}/>
                             <Text style={{fontSize:18, paddingLeft:10}}> {item.owner.firstName} {item.owner.lastName} </Text>
                             <Text style={{fontSize:12, paddingLeft:15, color:'grey'}}> few seconds ago </Text>
-                        </Animated.View>
+                        </View>
 
 
-                        <Animated.Image source={{uri: item.image}} imageStyle={{borderRadius:10}} style={{width: widthPantalla+5, height: heigtPantalla*0.4 , opacity: this.state.postOpacity, borderColor:'#E6E6E6', borderWidth:0.5,alignSelf:'center', marginTop:heigtPantalla*0.02, marginBottom: heigtPantalla*0.02, backgroundColor:'#E6E6E6'}}/>
+                        <Image source={{uri: item.image}} style={styles.postImage}/>
 
-                        <Animated.Text style={[styles.messageStyle, {opacity: this.state.postOpacity}]}> {item.message} </Animated.Text>
+                        <Text style={styles.messageStyle}> {item.message} </Text>
 
-                        <Animated.View style={styles.tagsContainer}>
+                        <View style={styles.tagsContainer}>
                               {item.tags.map( (tag,index) => {
 
                                 if(tag == null){
@@ -178,7 +186,7 @@ export default class App extends React.Component {
                                 }
 
                                 })}
-                        </Animated.View>
+                        </View>
 
                         </Animated.View>
                       }
@@ -186,14 +194,8 @@ export default class App extends React.Component {
                   />
                   )
             }
-
-
-
-
             </View>
           );
-
-
       }
 }
 
@@ -207,13 +209,12 @@ export default class App extends React.Component {
           marginTop:10,
           marginBottom:1,
           flexDirection:'row',
-
         },
         textInput: {
           marginLeft:10,
           width: widthPantalla*0.72
         },
-        deleteIcon: {
+        icons: {
           justifyContent: 'center',
           marginRight:10
         },
@@ -234,5 +235,33 @@ export default class App extends React.Component {
           flex:1,
           justifyContent:'center',
           alignItems:'center'
+        },
+        postView: {
+          borderWidth:0.5,
+          borderColor:'grey',
+          marginTop:10,
+          backgroundColor:'white',
+          elevation: 3
+        },
+        topPost: {
+          flexDirection:'row',
+          marginLeft:20,
+          marginTop:10,
+          alignItems: 'center'
+        },
+        profileImage: {
+          width:60,
+          height:60,
+          borderRadius:30
+        },
+        postImage: {
+          width: widthPantalla+5,
+          height: heigtPantalla*0.4,
+          borderColor:'#E6E6E6',
+          borderWidth:0.5,
+          alignSelf:'center',
+          marginTop:heigtPantalla*0.02,
+          marginBottom: heigtPantalla*0.02,
+          backgroundColor:'#E6E6E6'
         }
       });
