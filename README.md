@@ -1,4 +1,4 @@
-# RokketLabsPruebaTecnica
+# RokketLabsPruebaTecnica (Español)
 RokketLabsPruebaTecnica es una app desarrollada en React Native (sin Expo) cuyo objetivo es desplegar una serie de posts en base a tags que les fueron asignados. 
 
 ## Paquetes necesarios y su uso
