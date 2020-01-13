@@ -33,7 +33,7 @@ Asi mismo, se podrá buscar más posts de una manera más rápida presionando lo
 ----
 
 # RokketLabsPruebaTecnica (English)
-RokketLabsPruebaTecnica is an app developed in React Native (not Expo) which objective is to show a list of posts by their tags.
+RokketLabsPruebaTecnica is an app developed in React Native (not Expo) which purpose is to show a list of posts by their tags.
 
 ## Packages needed and their use
 ### Native Base
