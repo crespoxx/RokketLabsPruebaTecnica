@@ -25,8 +25,9 @@ import Spinner from 'react-native-spinkit';
 ```
 
 ## Cómo funciona
+Al abrir la app, se mostrarán algunos de los posts colocados por algunos usuarios, con la idea de siempre mostrar algún contenido al usuario y no se sienta perdido.
 
-Para buscar estos posts, simplemente debes ingresar el tag que desees en el buscador ubicado en la parte superior de la app. Una vez ingresado el tag, se realizará una llamada al siguiente API (https://n161.tech/api/dummyapi/tag/{tag-ingresado-en-el-buscador}/post) el cual responderá con los posts que tengan asignados dicho tag.
+Para buscar más posts, simplemente debes ingresar el tag que desees en el buscador ubicado en la parte superior de la app. Una vez ingresado el tag, se realizará una llamada al siguiente API (https://n161.tech/api/dummyapi/tag/{tag-ingresado-en-el-buscador}/post) el cual responderá con los posts que tengan asignados dicho tag.
 
 Asi mismo, se podrán buscar más posts de una manera más rápida presionando los tags que se encuentra de cada post en color azul con un "#"
 
@@ -59,7 +60,8 @@ import Spinner from 'react-native-spinkit';
 ```
 
 ## How it works
+When the app is opened, some posts published by some users will be shown, with the idea of always showing some content to the user, so he or she doesn't feel lost.
 
-To search this posts, simply enter the tag that you want in the search bar located at the top of the app. After this, the app will call the following API (https://n161.tech/api/dummyapi/tag/{tag-entered}/post) which will respond with all the posts that have your tag entered.
+To search posts, simply enter the tag that you want in the search bar located at the top of the app. After this, the app will call the following API (https://n161.tech/api/dummyapi/tag/{tag-entered}/post) which will respond with all the posts that have your tag entered.
 
 Also, you can find posts much faster pressing the blue tags shown in the posts with a "#". 
