@@ -26,6 +26,6 @@ import Spinner from 'react-native-spinkit';
 
 ## Como funciona
 
-Para buscar estos posts, simplemente debes ingresar el tag que desees en el buscador ubicado en la parte superior de la app. Una vez ingresado el tag, se realizará una llamada al siguiente API (https://n161.tech/api/dummyapi/tag/{tag ingresado en el buscador}/post) el cual responderá con los posts que tengan asignados dicho tag.
+Para buscar estos posts, simplemente debes ingresar el tag que desees en el buscador ubicado en la parte superior de la app. Una vez ingresado el tag, se realizará una llamada al siguiente API (https://n161.tech/api/dummyapi/tag/{tag-ingresado-en-el-buscador}/post) el cual responderá con los posts que tengan asignados dicho tag.
 
 Asi mismo, se podrá buscar más posts presionando los tags que se encuentra de cada post en color azul con un "#"
