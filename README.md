@@ -28,4 +28,36 @@ import Spinner from 'react-native-spinkit';
 
 Para buscar estos posts, simplemente debes ingresar el tag que desees en el buscador ubicado en la parte superior de la app. Una vez ingresado el tag, se realizará una llamada al siguiente API (https://n161.tech/api/dummyapi/tag/{tag-ingresado-en-el-buscador}/post) el cual responderá con los posts que tengan asignados dicho tag.
 
-Asi mismo, se podrá buscar más posts presionando los tags que se encuentra de cada post en color azul con un "#"
+Asi mismo, se podrá buscar más posts de una manera más rápida presionando los tags que se encuentra de cada post en color azul con un "#"
+
+# RokketLabsPruebaTecnica (English)
+RokketLabsPruebaTecnica is an app developed in React Native (not Expo) which objective is to show a list of posts by their tags.
+
+## Packages needed and their use
+### Native Base
+Using package manager NPM, install the follow package by [native-base](https://nativebase.io/). 
+
+```bash
+npm i native-base
+```
+It use is for importing icons to the app
+
+ ```javascript
+import { Icon } from 'native-base';
+```
+### react-native-spinkit
+Then, install following package [react-native-spinkit](https://github.com/maxs15/react-native-spinkit).
+
+```bash
+npm install react-native-spinkit@latest --save
+```
+It use is for loading animation.
+ ```javascript
+import Spinner from 'react-native-spinkit';
+```
+
+## How it works
+
+To search this posts, simply enter the tag that you want in the search bar located at the top of the app. After this, the app will call the following API (https://n161.tech/api/dummyapi/tag/{tag-entered}/post) which will respond with all the posts that have your tag entered.
+
+Also, you can find posts much faster pressing the blue tags shown in the posts with a "#". 
